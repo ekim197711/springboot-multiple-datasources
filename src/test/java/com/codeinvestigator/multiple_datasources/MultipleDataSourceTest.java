@@ -4,13 +4,14 @@ import com.codeinvestigator.multiple_datasources.sport.SportEvent;
 import com.codeinvestigator.multiple_datasources.sport.SportEventRepository;
 import com.codeinvestigator.multiple_datasources.weather.Weather;
 import com.codeinvestigator.multiple_datasources.weather.WeatherRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
-public class MultipleDataSourceTest {
+class MultipleDataSourceTest {
 
     @Autowired
     WeatherRepository weatherRepository;
@@ -32,8 +33,8 @@ public class MultipleDataSourceTest {
         long countWeather = weatherRepository.count();
         long countSport = sportEventRepository.count();
 
-        Assertions.assertEquals(countWeather, 2);
-        Assertions.assertEquals(countSport, 2);
+        assertEquals(2, countWeather);
+        assertEquals(2, countSport);
     }
 
 }

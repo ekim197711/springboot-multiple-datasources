@@ -1,13 +1,13 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'org.springframework.boot' version '3.5.12'
     id 'java'
+    id "org.openrewrite.rewrite" version "latest.release"
 }
 
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.codeinvestigator'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '12'
 
 configurations {
     compileOnly {
@@ -21,11 +21,15 @@ repositories {
 test {
     useJUnitPlatform()
 }
+rewrite {
+    activeRecipe('org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_5')
+    activeRecipe("org.openrewrite.gradle.MigrateToGradle9")
+    setExportDatatables(true)
+}
 dependencies {
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
-
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
@@ -34,6 +38,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-
+    rewrite("org.openrewrite.recipe:rewrite-spring:6.26.0")
+    rewrite("org.openrewrite.recipe:rewrite-migrate-java:3.29.0")
+    runtimeOnly "jakarta.xml.bind:jakarta.xml.bind-api:4.0.5"
+    runtimeOnly "javax.xml.bind:jaxb-api:2.3.1"
 
 }

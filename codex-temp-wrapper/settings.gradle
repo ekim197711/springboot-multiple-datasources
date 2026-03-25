@@ -1,0 +1,5 @@
+rootProject.name = 'codex-temp-wrapper'
+
+dependencies {
+    runtimeOnly "jakarta.xml.bind:jakarta.xml.bind-api:4.0.5"
+}

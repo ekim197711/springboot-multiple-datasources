@@ -2,7 +2,7 @@ package com.codeinvestigator.multiple_datasources.sport;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Data
 @Table
